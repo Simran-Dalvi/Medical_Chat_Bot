@@ -51,7 +51,7 @@ to .gitignore file?
 
  1. document loading (pdf with 637 pages)
  2. text splitting/ chunking (5859 text chunks)
- 3. embedding-  done through hugging face sentence-transformers model
+ 3. embedding-  done through hugging face sentence-transformers model (returns a 384 dimensional vector)
  4. storing it in a vector database - pinecone
     1. connect to pinecone api
     2. create an index in pinecone 
@@ -65,6 +65,17 @@ to .gitignore file?
     4. get response answers
 
 ## now we do this whole in modelar form
+in the src file 
+1. helper.py does the document loading filtering and chunking
+2. store_index.py connects to pinecone api, creates an index, stores the embedding in the index
+3. prompt.py contains the prompt template for the chatbot
+
+app file uses Flask to connect backend and frontend
+it needs 2 folders
+1. templates - contains the html file 
+2. static - contains the css file
+it connects to the chat openai model, pinecone DB, and prompt template using chains in langchain
+the chat function at "/get" accepts the message invokes the rag chain and returns the response answer.
 
 
  
